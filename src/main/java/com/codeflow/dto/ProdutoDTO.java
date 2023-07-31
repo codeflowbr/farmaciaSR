@@ -1,13 +1,12 @@
 package com.codeflow.dto;
 
-import java.util.Date;
+import java.util.List;
 
-import org.springframework.format.annotation.DateTimeFormat;
 
+import com.codeflow.entity.DoencaEntity;
+import com.codeflow.entity.VendaEntity;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
 import lombok.Data;
 
 @Data
@@ -21,10 +20,11 @@ public class ProdutoDTO {
 
 	@JsonProperty("desconto")
 	private Integer desconto;
+
+	@JsonProperty("produtos")
+    private List<VendaEntity> vendas;
 	
-	@Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
-	@JsonProperty("venda")
-	private Date venda;
+	@JsonProperty("produtos")
+    private List<DoencaEntity> doencas;
 
 }

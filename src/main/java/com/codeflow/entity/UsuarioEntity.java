@@ -1,6 +1,5 @@
 package com.codeflow.entity;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -11,31 +10,34 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import lombok.Data;
 
-@Entity(name = "produto")
+@Entity(name = "usuario")
 @Data
-public class ProdutoEntity {
+public class UsuarioEntity {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SequenceProdutoId")
-	@SequenceGenerator(name = "SequenceProdutoId", sequenceName = "PRODUTO_SEQ", allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SequenceUsuarioId")
+	@SequenceGenerator(name = "SequenceUsuarioId", sequenceName = "USUARIO_SEQ", allocationSize = 1)
 	private Long id;
 
 	@Column(name = "nome")
 	private String nome;
 
-	@Column(name = "desconto")
-	private Integer desconto;
-
-	@ManyToMany(mappedBy = "produtos")
-    private List<VendaEntity> vendas;
+	@Column(name = "telefone")
+	private String telefone;
 	
-	@ManyToMany(mappedBy = "produtos")
-    private List<DoencaEntity> doencas;
+	@Column(name = "cpf")
+	private String cpf;
+	
+	@Column(name = "login")
+	private String login;
+	
+	@Column(name = "senha")
+	private String senha;
 	
 }

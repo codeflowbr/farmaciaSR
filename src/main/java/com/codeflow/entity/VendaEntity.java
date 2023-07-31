@@ -1,0 +1,47 @@
+package com.codeflow.entity;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import org.springframework.format.annotation.DateTimeFormat;
+import jakarta.persistence.*;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.SequenceGenerator;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+import lombok.Data;
+
+@Entity(name = "venda")
+@Data
+public class VendaEntity {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SequenceVendaId")
+	@SequenceGenerator(name = "SequenceVendaId", sequenceName = "VENDA_SEQ", allocationSize = 1)
+	private Long id;
+
+	@Column(name = "duracao")
+	private Integer duracao;
+
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	@Column(name = "venda")
+	private Date venda;
+
+	@ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+	@JoinTable(name = "venda_produto", joinColumns = @JoinColumn(name = "venda_id"), inverseJoinColumns = @JoinColumn(name = "produto_id"))
+	private List<ProdutoEntity> produtos;
+
+	@ManyToOne
+    @JoinColumn(name = "cliente_id")
+    private ClienteEntity cliente;
+	
+}
