@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.codeflow.dto.LoginDTO;
-import com.codeflow.service.CustomerService;
 import com.codeflow.service.UsuarioService;
 
 @RestController
