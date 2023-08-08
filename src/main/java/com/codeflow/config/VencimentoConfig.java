@@ -23,17 +23,19 @@ public class VencimentoConfig {
 
 	    @Bean
 	    public void init() {
-	        ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
+	    	  ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
 
-	        // Calcula o tempo até meia-noite
-	        LocalDateTime now = LocalDateTime.now();
-	        LocalDateTime midnight = now.with(LocalTime.MIDNIGHT);
-	        if (now.compareTo(midnight) > 0) {
-	            midnight = midnight.plusDays(1);
-	        }
-	        long initialDelay = Duration.between(now, midnight).getSeconds();
-
-	        // Agenda a tarefa para executar à meia-noite todos os dias
-	        executorService.scheduleAtFixedRate(() -> vencimentoController.verifyPoints(), initialDelay, 24 * 60 * 60, TimeUnit.SECONDS);
+	          // Calcula o atraso até as 10 da manhã
+	          LocalTime now = LocalTime.now();
+	          LocalTime targetTime = LocalTime.of(10, 0); // Horário desejado (10:00 AM)
+	          
+	          long initialDelay = Duration.between(now, targetTime).getSeconds();
+	          
+	          if (initialDelay < 0) {
+	              initialDelay += TimeUnit.DAYS.toSeconds(1); // Se já passou das 10 da manhã, agenda para amanhã
+	          }
+	          
+	          // Agenda a tarefa para executar às 10 da manhã todos os dias
+	          executorService.scheduleAtFixedRate(() -> vencimentoController.verifyPoints(), initialDelay, TimeUnit.DAYS.toSeconds(1), TimeUnit.SECONDS);
 	    }
 }
