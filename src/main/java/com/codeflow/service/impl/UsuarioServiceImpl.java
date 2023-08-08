@@ -9,16 +9,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.codeflow.dto.CustomerDTO;
 import com.codeflow.dto.LoginDTO;
-import com.codeflow.dto.UserDTO;
 import com.codeflow.dto.UsuarioDTO;
-import com.codeflow.entity.CustomerEntity;
 import com.codeflow.entity.UsuarioEntity;
 import com.codeflow.repository.UsuarioRepository;
 import com.codeflow.service.UsuarioService;
-import com.codeflow.utils.CustomerUtils;
-import com.codeflow.utils.UserUtils;
 import com.codeflow.utils.UsuarioUtils;
 
 @Service
