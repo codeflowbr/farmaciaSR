@@ -30,12 +30,24 @@ public class VendaEntity {
 
 	@Column(name = "duracao")
 	private Integer duracao;
+	
+	@Column(name = "mensagemEnviada", columnDefinition = "boolean default false")
+	private Boolean mensagemEnviada= false;
+	
+	@Column(name = "recorrente")
+	private Boolean recorrente;
 
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	@Column(name = "venda")
 	private Date venda;
+	
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	@Column(name = "dataMensagem")
+	private Date dataMensagem;
 
+	
 	@ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	@JoinTable(name = "venda_produto", joinColumns = @JoinColumn(name = "venda_id"), inverseJoinColumns = @JoinColumn(name = "produto_id"))
 	private List<ProdutoEntity> produtos;

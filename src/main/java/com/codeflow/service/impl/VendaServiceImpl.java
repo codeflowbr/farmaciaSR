@@ -1,6 +1,7 @@
 package com.codeflow.service.impl;
 
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,6 +15,7 @@ import com.codeflow.entity.VendaEntity;
 import com.codeflow.repository.VendaRepository;
 import com.codeflow.service.VendaService;
 import com.codeflow.utils.VendaUtils;
+import java.util.Calendar;
 
 @Service
 public class VendaServiceImpl implements VendaService {
@@ -32,6 +34,9 @@ public class VendaServiceImpl implements VendaService {
 	@Override
 	public VendaDTO postVenda(VendaDTO vendaDTO) {
 		VendaEntity vendaEntity = VendaUtils.convertDTOemEntity(vendaDTO);
+		 Calendar calendar = Calendar.getInstance();
+		 calendar.add(Calendar.DAY_OF_MONTH, vendaEntity.getDuracao() - 5);
+		vendaEntity.setDataMensagem(calendar.getTime());
 		VendaEntity vendaEntityreturn = vendaRepository.saveAndFlush(vendaEntity);
 		return VendaUtils.convertEntityemDTO(vendaEntityreturn);
 	}

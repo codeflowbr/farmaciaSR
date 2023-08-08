@@ -8,6 +8,7 @@ import com.codeflow.entity.ClienteEntity;
 import com.codeflow.entity.ProdutoEntity;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import jakarta.persistence.Column;
 import lombok.Data;
 
 @Data
@@ -25,6 +26,9 @@ public class VendaDTO {
 	@JsonProperty("produtos")
 	private List<ProdutoEntity> produtos;
 
+	@JsonProperty("recorrente")
+	private Boolean recorrente;
+	
 	@JsonProperty("cliente")
     private ClienteEntity cliente;
 
