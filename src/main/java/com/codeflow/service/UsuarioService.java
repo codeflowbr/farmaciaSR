@@ -2,6 +2,7 @@ package com.codeflow.service;
 
 import java.util.List;
 
+import com.codeflow.dto.LoginDTO;
 import com.codeflow.dto.UsuarioDTO;
 
 /**
@@ -48,5 +49,13 @@ public interface UsuarioService {
 	 * @return usuario encontrado
 	 */
 	public UsuarioDTO getByIdUsuario(Long id);
+
+
+	/**
+	 * Realizar Login
+	 * @param login
+	 * @return
+	 */
+	UsuarioDTO getLogin(LoginDTO login);
 
 }
