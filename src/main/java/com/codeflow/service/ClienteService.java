@@ -49,4 +49,12 @@ public interface ClienteService {
 	 */
 	public ClienteDTO getByIdCliente(Long id);
 
+
+	/**
+	 * buscar todos os clientes apartir de uma letra.
+	 * @param nome
+	 * @return lista de clientes
+	 */
+	public List<ClienteDTO> getAllClienteiLike(String nome);
+
 }

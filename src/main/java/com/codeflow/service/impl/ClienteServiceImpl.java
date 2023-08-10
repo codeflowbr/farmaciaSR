@@ -58,4 +58,10 @@ public class ClienteServiceImpl implements ClienteService {
 		throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Cliente não encontrado");
 	}
 
+	@Override
+	public List<ClienteDTO> getAllClienteiLike(String nome) {
+		List<ClienteEntity> listClienteEntity = clienteRepository.findAll();
+		return ClienteUtils.convertEntityListInDTOList(listClienteEntity);
+	}
+
 }

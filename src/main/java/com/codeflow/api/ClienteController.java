@@ -29,6 +29,11 @@ public class ClienteController {
 		return ResponseEntity.ok(clienteService.getAllCliente());
 	}
 	
+	@GetMapping("/nome/{nome}")
+	public ResponseEntity<List<ClienteDTO>> getAllClientesilike(@PathVariable("nome") String nome) {
+		return ResponseEntity.ok(clienteService.getAllCliente());
+	}
+	
 	@GetMapping("/{idCliente}")
 	public ResponseEntity<?> getByIdCliente(@PathVariable("idCliente") Long id) {
 		return ResponseEntity.ok(clienteService.getByIdCliente(id));
