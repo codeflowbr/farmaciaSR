@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import io.micrometer.common.lang.Nullable;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -34,6 +35,17 @@ public class ClienteEntity {
 	@Column(name = "cpf")
 	private String cpf;
 	
+	@Column(name = "genero")
+	private String genero;
+	
+	@Column(name = "endereço")
+	private String endereco;
+	
+	@Nullable
+	@OneToMany(mappedBy = "cliente")
+    private List<DoencaEntity> doencas;
+	
+	@Nullable
 	@OneToMany(mappedBy = "cliente")
     private List<VendaEntity> vendas;
 	

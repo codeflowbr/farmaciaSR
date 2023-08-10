@@ -7,6 +7,7 @@ import com.codeflow.entity.DoencaEntity;
 import com.codeflow.entity.VendaEntity;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import io.micrometer.common.lang.Nullable;
 import jakarta.persistence.Column;
 import jakarta.persistence.OneToMany;
 import lombok.Data;
@@ -26,7 +27,18 @@ public class ClienteDTO {
 	@JsonProperty( "cpf")
 	private String cpf;
 	
-	@JsonProperty( "venda")
+	@JsonProperty("genero")
+	private String genero;
+	
+	@JsonProperty("endereço")
+	private String endereco;
+	
+	@Nullable
+	@JsonProperty("cliente")
+    private List<DoencaEntity> doencas;
+	
+	@Nullable
+	@JsonProperty("cliente")
     private List<VendaEntity> vendas;
-
+	
 }
