@@ -26,7 +26,7 @@ public class ClienteDTO {
 	@JsonProperty( "cpf")
 	private String cpf;
 	
-	@JsonProperty( "cliente")
+	@JsonProperty( "venda")
     private List<VendaEntity> vendas;
 
 }
