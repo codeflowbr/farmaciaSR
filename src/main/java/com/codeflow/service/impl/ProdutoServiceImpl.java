@@ -1,5 +1,6 @@
 package com.codeflow.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -9,7 +10,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.codeflow.dto.ProdutoDTO;
+import com.codeflow.entity.DoencaEntity;
 import com.codeflow.entity.ProdutoEntity;
+import com.codeflow.repository.DoencaRepository;
 import com.codeflow.repository.ProdutoRepository;
 import com.codeflow.service.ProdutoService;
 import com.codeflow.utils.ProdutoUtils;
@@ -21,6 +24,8 @@ public class ProdutoServiceImpl implements ProdutoService {
 	@Autowired
 	private ProdutoRepository produtoRepository;
 	
+	@Autowired
+	private DoencaRepository doencaRepository;
 
 	@Override
 	public List<ProdutoDTO> getAllProduto() {
@@ -30,7 +35,12 @@ public class ProdutoServiceImpl implements ProdutoService {
 
 	@Override
 	public ProdutoDTO postProduto(ProdutoDTO produtoDTO) {
+		List<DoencaEntity> doencas = new ArrayList<>();
+		for (Long doencaEntity : produtoDTO.getDoencas()) {
+			doencas.add(doencaRepository.getById(doencaEntity));
+		}
 		ProdutoEntity produtoEntity = ProdutoUtils.convertDTOemEntity(produtoDTO);
+		produtoEntity.setDoencas(doencas);
 		ProdutoEntity produtoEntityreturn = produtoRepository.saveAndFlush(produtoEntity);
 		return ProdutoUtils.convertEntityemDTO(produtoEntityreturn);
 	}
