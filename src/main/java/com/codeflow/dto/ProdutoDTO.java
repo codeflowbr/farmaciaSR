@@ -21,10 +21,10 @@ public class ProdutoDTO {
 	@JsonProperty("desconto")
 	private Integer desconto;
 
-	@JsonProperty("produtos")
+	@JsonProperty("vendas")
     private List<VendaEntity> vendas;
 	
-	@JsonProperty("produtos")
+	@JsonProperty("doencas")
     private List<DoencaEntity> doencas;
 
 }
