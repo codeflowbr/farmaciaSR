@@ -42,7 +42,7 @@ public class ClienteEntity {
 	private String endereco;
 	
 	@Nullable
-	@OneToMany(mappedBy = "cliente")
+	@OneToMany(mappedBy = "clientes")
     private List<DoencaEntity> doencas;
 	
 	@Nullable

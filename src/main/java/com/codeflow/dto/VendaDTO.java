@@ -24,12 +24,12 @@ public class VendaDTO {
 	private Date venda;
 
 	@JsonProperty("produtos")
-	private List<ProdutoEntity> produtos;
+	private List<ProdutoDTO> produtos;
 
 	@JsonProperty("recorrente")
 	private Boolean recorrente;
 	
 	@JsonProperty("cliente")
-    private ClienteEntity cliente;
+    private ClienteDTO cliente;
 
 }

@@ -34,11 +34,11 @@ public class ClienteDTO {
 	private String endereco;
 	
 	@Nullable
-	@JsonProperty("cliente")
-    private List<DoencaEntity> doencas;
+	@JsonProperty("doencas")
+    private List<DoencaDTO> doencas;
 	
 	@Nullable
-	@JsonProperty("cliente")
-    private List<VendaEntity> vendas;
+	@JsonProperty("vendas")
+    private List<VendaDTO> vendas;
 	
 }

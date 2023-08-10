@@ -28,11 +28,6 @@ public class ClienteController {
 	public ResponseEntity<List<ClienteDTO>> getAllClientes() {
 		return ResponseEntity.ok(clienteService.getAllCliente());
 	}
-
-	public ResponseEntity<List<ClienteDTO>> getAllClientes() {
-		return ResponseEntity.ok(clienteService.getAllCliente());
-	}
-
 	
 	@GetMapping("/{idCliente}")
 	public ResponseEntity<?> getByIdCliente(@PathVariable("idCliente") Long id) {

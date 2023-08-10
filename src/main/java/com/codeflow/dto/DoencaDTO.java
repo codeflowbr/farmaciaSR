@@ -27,5 +27,5 @@ public class DoencaDTO {
 	private String doenca;
 
 	@JsonProperty("produtos")
-	private List<ProdutoEntity> produtos;
+	private List<ProdutoDTO> produtos;
 }
