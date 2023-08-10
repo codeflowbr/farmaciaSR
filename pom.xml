@@ -121,16 +121,7 @@
 			<artifactId>spring-boot-starter-mail</artifactId>
 		</dependency>
 		<!-- Fim email-->
-		<!-- Inicio upload de arquivos-->
-    <dependency>
-        <groupId>commons-fileupload</groupId>
-        <artifactId>commons-fileupload</artifactId>
-        <version>1.4</version>
-    </dependency>
-    <!-- fim upload de a-->
-    
 	</dependencies>
-
 	<build>
 		<plugins>
 			<plugin>
