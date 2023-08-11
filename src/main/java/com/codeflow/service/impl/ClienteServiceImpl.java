@@ -60,7 +60,7 @@ public class ClienteServiceImpl implements ClienteService {
 
 	@Override
 	public List<ClienteDTO> getAllClienteiLike(String nome) {
-		List<ClienteEntity> listClienteEntity = clienteRepository.findAll();
+		List<ClienteEntity> listClienteEntity = clienteRepository.findByNomeIgnoreCaseContaining(nome);
 		return ClienteUtils.convertEntityListInDTOList(listClienteEntity);
 	}
 

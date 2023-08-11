@@ -3,6 +3,7 @@ package com.codeflow.service;
 import java.util.List;
 
 import com.codeflow.dto.ProdutoDTO;
+import com.codeflow.entity.ProdutoEntity;
 
 /**
  * Serviço de produtos.
@@ -14,7 +15,7 @@ public interface ProdutoService {
 	 * 
 	 * @return lista de produto dto.
 	 */
-	public List<ProdutoDTO> getAllProduto();
+	public List<ProdutoEntity> getAllProduto();
 	
 	
 
@@ -24,7 +25,7 @@ public interface ProdutoService {
 	 * @param produtoDTO dto de produto
 	 * @return lista de produto dto.
 	 */
-	public ProdutoDTO postProduto(ProdutoDTO produtoDTO);
+	public ProdutoEntity postProduto(ProdutoDTO produtoDTO);
 	
 
 	/**
@@ -32,7 +33,7 @@ public interface ProdutoService {
 	 * 
 	 * @return lista de produto dto.
 	 */
-	public ProdutoDTO putProduto(ProdutoDTO produtoDTO);
+	public ProdutoEntity putProduto(ProdutoDTO produtoDTO);
 
 	/**
 	 * EditarProduto
@@ -47,6 +48,6 @@ public interface ProdutoService {
 	 * @param id id do produto
 	 * @return produto encontrado
 	 */
-	public ProdutoDTO getByIdProduto(Long id);
+	public ProdutoEntity getByIdProduto(Long id);
 
 }

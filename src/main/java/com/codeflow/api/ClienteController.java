@@ -31,7 +31,7 @@ public class ClienteController {
 	
 	@GetMapping("/nome/{nome}")
 	public ResponseEntity<List<ClienteDTO>> getAllClientesilike(@PathVariable("nome") String nome) {
-		return ResponseEntity.ok(clienteService.getAllCliente());
+		return ResponseEntity.ok(clienteService.getAllClienteiLike(nome));
 	}
 	
 	@GetMapping("/{idCliente}")

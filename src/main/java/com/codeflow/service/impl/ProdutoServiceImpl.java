@@ -28,28 +28,31 @@ public class ProdutoServiceImpl implements ProdutoService {
 	private DoencaRepository doencaRepository;
 
 	@Override
-	public List<ProdutoDTO> getAllProduto() {
+	public List<ProdutoEntity> getAllProduto() {
 		List<ProdutoEntity> listProdutoEntity = produtoRepository.findAll();
-		return ProdutoUtils.convertEntityListInDTOList(listProdutoEntity);
+		return listProdutoEntity;
 	}
 
 	@Override
-	public ProdutoDTO postProduto(ProdutoDTO produtoDTO) {
+	public ProdutoEntity postProduto(ProdutoDTO produtoDTO) {
 		List<DoencaEntity> doencas = new ArrayList<>();
 		for (Long doencaEntity : produtoDTO.getDoencas()) {
 			doencas.add(doencaRepository.getById(doencaEntity));
 		}
-		ProdutoEntity produtoEntity = ProdutoUtils.convertDTOemEntity(produtoDTO);
+		produtoDTO.setDoencas(null);
+		ProdutoEntity produtoEntity = new ProdutoEntity();
+		produtoEntity.setNome(produtoDTO.getNome());
+		produtoEntity.setDesconto(produtoDTO.getDesconto());
 		produtoEntity.setDoencas(doencas);
 		ProdutoEntity produtoEntityreturn = produtoRepository.saveAndFlush(produtoEntity);
-		return ProdutoUtils.convertEntityemDTO(produtoEntityreturn);
+		return produtoEntityreturn;
 	}
 
 	@Override
-	public ProdutoDTO putProduto(ProdutoDTO produtoDTO) {
+	public ProdutoEntity putProduto(ProdutoDTO produtoDTO) {
 		getByIdProduto(produtoDTO.getId());
 		ProdutoEntity produtoEntity = produtoRepository.save(ProdutoUtils.convertDTOemEntity(produtoDTO));
-		return ProdutoUtils.convertEntityemDTO(produtoEntity);
+		return produtoEntity;
 	}
 
 	@Override
@@ -59,10 +62,10 @@ public class ProdutoServiceImpl implements ProdutoService {
 	}
 
 	@Override
-	public ProdutoDTO getByIdProduto(Long id) {
+	public ProdutoEntity getByIdProduto(Long id) {
 		Optional<ProdutoEntity> produtoEntity = produtoRepository.findById(id);
 		if (produtoEntity.isPresent()) {
-			return ProdutoUtils.convertEntityemDTO(produtoEntity.get());
+			return produtoEntity.get();
 		}
 		throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Produto não encontrado");
 	}

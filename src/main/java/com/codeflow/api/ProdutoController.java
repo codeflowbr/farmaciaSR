@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.codeflow.dto.ProdutoDTO;
+import com.codeflow.entity.ProdutoEntity;
 import com.codeflow.service.ProdutoService;
 import com.codeflow.service.VencimentoService;
 
@@ -25,7 +26,7 @@ public class ProdutoController {
 	private ProdutoService produtoService;
 
 	@GetMapping
-	public ResponseEntity<List<ProdutoDTO>> getAllProdutos() {
+	public ResponseEntity<List<ProdutoEntity>> getAllProdutos() {
 		return ResponseEntity.ok(produtoService.getAllProduto());
 	}
 

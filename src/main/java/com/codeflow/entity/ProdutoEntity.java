@@ -8,6 +8,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
+import jakarta.annotation.Nullable;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -34,10 +35,12 @@ public class ProdutoEntity {
 	@Column(name = "desconto")
 	private Integer desconto;
 
+	@Nullable
 	@JsonBackReference
 	@ManyToMany(mappedBy = "produtos")
     private List<VendaEntity> vendas;
 
+	@Nullable
 	@JsonBackReference
 	@ManyToMany(mappedBy = "produtos")
     private List<DoencaEntity> doencas;
