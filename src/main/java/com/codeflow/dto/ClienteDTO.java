@@ -1,5 +1,6 @@
 package com.codeflow.dto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -35,6 +36,6 @@ public class ClienteDTO {
 	
 	@Nullable
 	@JsonProperty("doencas")
-    private List<DoencaDTO> doencas;
+    private List<DoencaDTO> doencas = new ArrayList<>();
 	
 }

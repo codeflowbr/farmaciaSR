@@ -25,7 +25,7 @@ public class VendaController {
 	private VendaService vendaService;
 
 	@GetMapping
-	public ResponseEntity<List<VendaDTO>> getAllVendas() {
+	public ResponseEntity<?> getAllVendas() {
 		return ResponseEntity.ok(vendaService.getAllVenda());
 	}
 

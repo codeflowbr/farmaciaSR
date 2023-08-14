@@ -50,7 +50,7 @@ public class VendaEntity {
 	
 	@ManyToMany
 	@JoinTable(name = "venda_produto", joinColumns = @JoinColumn(name = "venda_id"), inverseJoinColumns = @JoinColumn(name = "produto_id"))
-	private List<ProdutoEntity> produtos  = new ArrayList<>();;
+	private List<ProdutoEntity> produtos  = new ArrayList<>();
 
 	
 	@ManyToOne

@@ -1,5 +1,6 @@
 package com.codeflow.dto;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -24,12 +25,12 @@ public class VendaDTO {
 	private Date venda;
 
 	@JsonProperty("produtos")
-	private List<ProdutoDTO> produtos;
+	private List<Long> produtos = new ArrayList<>();
 
 	@JsonProperty("recorrente")
 	private Boolean recorrente;
 	
 	@JsonProperty("cliente")
-    private ClienteDTO cliente;
+    private Long cliente;
 
 }

@@ -38,13 +38,9 @@ public class ProdutoEntity {
 	@Column(name = "desconto")
 	private Integer desconto;
 
-	@Nullable
-	@ManyToMany(mappedBy = "produtos")
-    private List<VendaEntity> vendas  = new ArrayList<>();;
-
 	@ManyToMany
 	@JoinTable(name = "doenca_produto", joinColumns = @JoinColumn(name = "doenca_id"), inverseJoinColumns = @JoinColumn(name = "produto_id"))
-	private List<DoencaEntity> doencas = new ArrayList<>();;
+	private List<DoencaEntity> doencas = new ArrayList<>();
 	
 	
 }

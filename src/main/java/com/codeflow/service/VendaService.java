@@ -3,6 +3,7 @@ package com.codeflow.service;
 import java.util.List;
 
 import com.codeflow.dto.VendaDTO;
+import com.codeflow.entity.VendaEntity;
 
 /**
  * Serviço de vendas.
@@ -14,7 +15,7 @@ public interface VendaService {
 	 * 
 	 * @return lista de venda dto.
 	 */
-	public List<VendaDTO> getAllVenda();
+	public List<VendaEntity> getAllVenda();
 	
 	
 
@@ -24,7 +25,7 @@ public interface VendaService {
 	 * @param vendaDTO dto de venda
 	 * @return lista de venda dto.
 	 */
-	public VendaDTO postVenda(VendaDTO vendaDTO);
+	public VendaEntity postVenda(VendaDTO vendaDTO);
 	
 
 	/**
@@ -32,7 +33,7 @@ public interface VendaService {
 	 * 
 	 * @return lista de venda dto.
 	 */
-	public VendaDTO putVenda(VendaDTO vendaDTO);
+	public VendaEntity putVenda(VendaDTO vendaDTO);
 
 	/**
 	 * EditarVenda
@@ -47,6 +48,6 @@ public interface VendaService {
 	 * @param id id do venda
 	 * @return venda encontrado
 	 */
-	public VendaDTO getByIdVenda(Long id);
+	public VendaEntity getByIdVenda(Long id);
 
 }
