@@ -25,7 +25,4 @@ public class DoencaDTO {
 
 	@JsonProperty("doenca")
 	private String doenca;
-
-	@JsonProperty("produtos")
-	private List<ProdutoDTO> produtos;
 }

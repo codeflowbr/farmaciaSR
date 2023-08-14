@@ -37,8 +37,4 @@ public class ClienteDTO {
 	@JsonProperty("doencas")
     private List<DoencaDTO> doencas;
 	
-	@Nullable
-	@JsonProperty("vendas")
-    private List<VendaDTO> vendas;
-	
 }

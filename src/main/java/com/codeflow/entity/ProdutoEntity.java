@@ -11,9 +11,12 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.annotation.Nullable;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Temporal;
@@ -36,13 +39,12 @@ public class ProdutoEntity {
 	private Integer desconto;
 
 	@Nullable
-	@JsonBackReference
 	@ManyToMany(mappedBy = "produtos")
-    private List<VendaEntity> vendas;
+    private List<VendaEntity> vendas  = new ArrayList<>();;
 
-	@Nullable
-	@JsonBackReference
-	@ManyToMany(mappedBy = "produtos")
-    private List<DoencaEntity> doencas;
+	@ManyToMany
+	@JoinTable(name = "doenca_produto", joinColumns = @JoinColumn(name = "doenca_id"), inverseJoinColumns = @JoinColumn(name = "produto_id"))
+	private List<DoencaEntity> doencas = new ArrayList<>();;
+	
 	
 }

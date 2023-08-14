@@ -48,10 +48,11 @@ public class VendaEntity {
 	private Date dataMensagem;
 
 	
-	@ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+	@ManyToMany
 	@JoinTable(name = "venda_produto", joinColumns = @JoinColumn(name = "venda_id"), inverseJoinColumns = @JoinColumn(name = "produto_id"))
-	private List<ProdutoEntity> produtos;
+	private List<ProdutoEntity> produtos  = new ArrayList<>();;
 
+	
 	@ManyToOne
     @JoinColumn(name = "cliente_id")
     private ClienteEntity cliente;

@@ -35,17 +35,17 @@ public class ProdutoServiceImpl implements ProdutoService {
 
 	@Override
 	public ProdutoEntity postProduto(ProdutoDTO produtoDTO) {
-		List<DoencaEntity> doencas = new ArrayList<>();
-		for (Long doencaEntity : produtoDTO.getDoencas()) {
-			doencas.add(doencaRepository.getById(doencaEntity));
-		}
-		produtoDTO.setDoencas(null);
 		ProdutoEntity produtoEntity = new ProdutoEntity();
+		for (Long doencaEntity : produtoDTO.getDoencas()) {
+			DoencaEntity doenca = doencaRepository.findById(doencaEntity).orElse(null);
+			  if (doenca != null) {
+				  produtoEntity.getDoencas().add(doenca);
+              }
+		}
 		produtoEntity.setNome(produtoDTO.getNome());
 		produtoEntity.setDesconto(produtoDTO.getDesconto());
-		produtoEntity.setDoencas(doencas);
-		ProdutoEntity produtoEntityreturn = produtoRepository.saveAndFlush(produtoEntity);
-		return produtoEntityreturn;
+		produtoRepository.saveAndFlush(produtoEntity);
+		return produtoEntity;
 	}
 
 	@Override
