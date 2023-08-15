@@ -18,6 +18,8 @@ import com.codeflow.repository.ProdutoRepository;
 import com.codeflow.repository.VendaRepository;
 import com.codeflow.service.VendaService;
 import com.codeflow.utils.VendaUtils;
+
+import java.util.ArrayList;
 import java.util.Calendar;
 
 @Service
@@ -67,8 +69,26 @@ public class VendaServiceImpl implements VendaService {
 	@Override
 	public VendaEntity putVenda(VendaDTO vendaDTO) {
 		getByIdVenda(vendaDTO.getId());
-		VendaEntity vendaEntity = vendaRepository.save(VendaUtils.convertDTOemEntity(vendaDTO));
-		return vendaEntity;
+		VendaEntity vendaEntity = new VendaEntity();
+		vendaEntity.setCliente(clienteRepository.findById(vendaDTO.getCliente()).orElse(null));
+		vendaEntity.setDuracao(vendaDTO.getDuracao());
+		vendaEntity.setRecorrente(vendaDTO.getRecorrente());
+		vendaEntity.setMensagemEnviada(false);
+		vendaEntity.setVenda(vendaDTO.getVenda());
+		vendaEntity.setId(vendaDTO.getId());
+		vendaEntity.setProdutos(new ArrayList<>());
+		 Calendar calendar = Calendar.getInstance();
+		 calendar.add(Calendar.DAY_OF_MONTH, vendaEntity.getDuracao() - 5);
+		vendaEntity.setDataMensagem(calendar.getTime());
+		for (Long produtoEntity : vendaDTO.getProdutos()) {
+			ProdutoEntity produto= produtoRepository.findById(produtoEntity).orElse(null);
+			  if (produto != null) {
+				  vendaEntity.getProdutos().add(produto);
+	          }
+		}
+		
+		VendaEntity vendaEntityretorno = vendaRepository.saveAndFlush(vendaEntity);
+		return vendaEntityretorno;
 	}
 
 	@Override
