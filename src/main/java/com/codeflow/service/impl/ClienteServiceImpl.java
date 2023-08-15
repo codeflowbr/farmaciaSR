@@ -1,6 +1,8 @@
 package com.codeflow.service.impl;
 
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -11,7 +13,10 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.codeflow.dto.ClienteDTO;
 import com.codeflow.entity.ClienteEntity;
+import com.codeflow.entity.DoencaEntity;
+import com.codeflow.entity.ProdutoEntity;
 import com.codeflow.repository.ClienteRepository;
+import com.codeflow.repository.DoencaRepository;
 import com.codeflow.service.ClienteService;
 import com.codeflow.utils.ClienteUtils;
 
@@ -22,25 +27,53 @@ public class ClienteServiceImpl implements ClienteService {
 	@Autowired
 	private ClienteRepository clienteRepository;
 	
+	@Autowired
+	private DoencaRepository doencaRepository;
+	
 
 	@Override
-	public List<ClienteDTO> getAllCliente() {
+	public List<ClienteEntity> getAllCliente() {
 		List<ClienteEntity> listClienteEntity = clienteRepository.findAll();
-		return ClienteUtils.convertEntityListInDTOList(listClienteEntity);
+		return listClienteEntity;
 	}
 
 	@Override
-	public ClienteDTO postCliente(ClienteDTO clienteDTO) {
-		ClienteEntity clienteEntity = ClienteUtils.convertDTOemEntity(clienteDTO);
-		ClienteEntity clienteEntityreturn = clienteRepository.saveAndFlush(clienteEntity);
-		return ClienteUtils.convertEntityemDTO(clienteEntityreturn);
+	public ClienteEntity postCliente(ClienteDTO clienteDTO) {
+		ClienteEntity clienteEntity = new ClienteEntity();
+		clienteEntity.setDataCadastro(new Date());
+		clienteEntity.setCpf(clienteDTO.getCpf());
+		clienteEntity.setEndereco(clienteDTO.getEndereco());
+		clienteEntity.setGenero(clienteDTO.getGenero());
+		clienteEntity.setNome(clienteDTO.getNome());
+		clienteEntity.setTelefone(clienteDTO.getTelefone());
+		clienteEntity.setDoencas(new ArrayList());
+		for (Long doencaEntity : clienteDTO.getDoencas()) {
+			DoencaEntity doenca = doencaRepository.findById(doencaEntity).orElse(null);
+			  if (doenca != null) {
+				  clienteEntity.getDoencas().add(doenca);
+              }
+		}
+		
+		return clienteRepository.saveAndFlush(clienteEntity);
 	}
 
 	@Override
-	public ClienteDTO putCliente(ClienteDTO clienteDTO) {
-		getByIdCliente(clienteDTO.getId());
-		ClienteEntity clienteEntity = clienteRepository.save(ClienteUtils.convertDTOemEntity(clienteDTO));
-		return ClienteUtils.convertEntityemDTO(clienteEntity);
+	public ClienteEntity putCliente(ClienteDTO clienteDTO) {
+		ClienteEntity clienteEntity = getByIdCliente(clienteDTO.getId());
+		clienteEntity.setCpf(clienteDTO.getCpf());
+		clienteEntity.setEndereco(clienteDTO.getEndereco());
+		clienteEntity.setGenero(clienteDTO.getGenero());
+		clienteEntity.setNome(clienteDTO.getNome());
+		clienteEntity.setTelefone(clienteDTO.getTelefone());
+		clienteEntity.setDoencas(new ArrayList());
+		for (Long doencaEntity : clienteDTO.getDoencas()) {
+			DoencaEntity doenca = doencaRepository.findById(doencaEntity).orElse(null);
+			  if (doenca != null) {
+				  clienteEntity.getDoencas().add(doenca);
+              }
+		}
+		ClienteEntity clienteEntityreturn = clienteRepository.save(clienteEntity);
+		return clienteEntityreturn;
 	}
 
 	@Override
@@ -50,18 +83,18 @@ public class ClienteServiceImpl implements ClienteService {
 	}
 
 	@Override
-	public ClienteDTO getByIdCliente(Long id) {
+	public ClienteEntity getByIdCliente(Long id) {
 		Optional<ClienteEntity> clienteEntity = clienteRepository.findById(id);
 		if (clienteEntity.isPresent()) {
-			return ClienteUtils.convertEntityemDTO(clienteEntity.get());
+			return clienteEntity.get();
 		}
 		throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Cliente não encontrado");
 	}
 
 	@Override
-	public List<ClienteDTO> getAllClienteiLike(String nome) {
+	public List<ClienteEntity> getAllClienteiLike(String nome) {
 		List<ClienteEntity> listClienteEntity = clienteRepository.findByNomeIgnoreCaseContaining(nome);
-		return ClienteUtils.convertEntityListInDTOList(listClienteEntity);
+		return listClienteEntity;
 	}
 
 }

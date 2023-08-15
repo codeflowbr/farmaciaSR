@@ -25,12 +25,12 @@ public class ClienteController {
 	private ClienteService clienteService;
 
 	@GetMapping
-	public ResponseEntity<List<ClienteDTO>> getAllClientes() {
+	public ResponseEntity<List<?>> getAllClientes() {
 		return ResponseEntity.ok(clienteService.getAllCliente());
 	}
 	
 	@GetMapping("/nome/{nome}")
-	public ResponseEntity<List<ClienteDTO>> getAllClientesilike(@PathVariable("nome") String nome) {
+	public ResponseEntity<List<?>> getAllClientesilike(@PathVariable("nome") String nome) {
 		return ResponseEntity.ok(clienteService.getAllClienteiLike(nome));
 	}
 	

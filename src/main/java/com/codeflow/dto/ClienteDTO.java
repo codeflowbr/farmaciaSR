@@ -36,6 +36,6 @@ public class ClienteDTO {
 	
 	@Nullable
 	@JsonProperty("doencas")
-    private List<DoencaDTO> doencas = new ArrayList<>();
+    private List<Long> doencas = new ArrayList<>();
 	
 }

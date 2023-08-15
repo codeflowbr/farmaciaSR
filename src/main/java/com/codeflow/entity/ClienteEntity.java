@@ -46,8 +46,11 @@ public class ClienteEntity {
 	@Column(name = "endereço")
 	private String endereco;
 	
+	@Column(name = "dataCadastro")
+	private Date dataCadastro;
+	
 	@ManyToMany
 	@JoinTable(name = "doenca_cliente", joinColumns = @JoinColumn(name = "doenca_id"), inverseJoinColumns = @JoinColumn(name = "cliente_id"))
-	private List<DoencaEntity> doencas  = new ArrayList<>();;
+	private List<DoencaEntity> doencas  = new ArrayList<>();
 	
 }

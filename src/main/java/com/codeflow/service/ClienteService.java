@@ -3,6 +3,7 @@ package com.codeflow.service;
 import java.util.List;
 
 import com.codeflow.dto.ClienteDTO;
+import com.codeflow.entity.ClienteEntity;
 
 /**
  * Serviço de clientes.
@@ -14,7 +15,7 @@ public interface ClienteService {
 	 * 
 	 * @return lista de cliente dto.
 	 */
-	public List<ClienteDTO> getAllCliente();
+	public List<ClienteEntity> getAllCliente();
 	
 	
 
@@ -24,7 +25,7 @@ public interface ClienteService {
 	 * @param clienteDTO dto de cliente
 	 * @return lista de cliente dto.
 	 */
-	public ClienteDTO postCliente(ClienteDTO clienteDTO);
+	public ClienteEntity postCliente(ClienteDTO clienteDTO);
 	
 
 	/**
@@ -32,7 +33,7 @@ public interface ClienteService {
 	 * 
 	 * @return lista de cliente dto.
 	 */
-	public ClienteDTO putCliente(ClienteDTO clienteDTO);
+	public ClienteEntity putCliente(ClienteDTO clienteDTO);
 
 	/**
 	 * EditarCliente
@@ -47,7 +48,7 @@ public interface ClienteService {
 	 * @param id id do cliente
 	 * @return cliente encontrado
 	 */
-	public ClienteDTO getByIdCliente(Long id);
+	public ClienteEntity getByIdCliente(Long id);
 
 
 	/**
@@ -55,6 +56,6 @@ public interface ClienteService {
 	 * @param nome
 	 * @return lista de clientes
 	 */
-	public List<ClienteDTO> getAllClienteiLike(String nome);
+	public List<ClienteEntity> getAllClienteiLike(String nome);
 
 }
