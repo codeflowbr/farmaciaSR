@@ -30,5 +30,8 @@ public interface VendaRepository extends JpaRepository<VendaEntity, Long> {
 		       "GROUP BY MONTH(v.dataMensagem), YEAR(v.dataMensagem)")
 	List<Object[]> findQuantityByMonthAndYearMensagem(@Param("oneYearAgo") Date oneYearAgo);
 
+	  @Query("SELECT DISTINCT p.nome FROM venda v JOIN v.produtos p WHERE v.cliente.id = :userId")
+	  List<String> findProdutoNamesByUserId(@Param("userId") Long userId);
+
 
 }

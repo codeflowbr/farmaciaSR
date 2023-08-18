@@ -38,6 +38,11 @@ public class ClienteController {
 	public ResponseEntity<?> getByIdCliente(@PathVariable("idCliente") Long id) {
 		return ResponseEntity.ok(clienteService.getByIdCliente(id));
 	}
+	
+	@GetMapping("/dados/{idCliente}")
+	public ResponseEntity<?> getDadosByIdCliente(@PathVariable("idCliente") Long id) {
+		return ResponseEntity.ok(clienteService.getDadosByIdCliente(id));
+	}
 
 	@PostMapping
 	public ResponseEntity<?> postCliente(@RequestBody ClienteDTO clienteDTO) {

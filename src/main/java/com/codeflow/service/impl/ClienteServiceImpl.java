@@ -12,11 +12,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.codeflow.dto.ClienteDTO;
+import com.codeflow.dto.ClienteRetornoDTO;
 import com.codeflow.entity.ClienteEntity;
 import com.codeflow.entity.DoencaEntity;
 import com.codeflow.entity.ProdutoEntity;
 import com.codeflow.repository.ClienteRepository;
 import com.codeflow.repository.DoencaRepository;
+import com.codeflow.repository.VendaRepository;
 import com.codeflow.service.ClienteService;
 import com.codeflow.utils.ClienteUtils;
 
@@ -30,6 +32,8 @@ public class ClienteServiceImpl implements ClienteService {
 	@Autowired
 	private DoencaRepository doencaRepository;
 	
+	@Autowired
+	private VendaRepository vendaRepository;
 
 	@Override
 	public List<ClienteEntity> getAllCliente() {
@@ -95,6 +99,19 @@ public class ClienteServiceImpl implements ClienteService {
 	public List<ClienteEntity> getAllClienteiLike(String nome) {
 		List<ClienteEntity> listClienteEntity = clienteRepository.findByNomeIgnoreCaseContaining(nome);
 		return listClienteEntity;
+	}
+
+	@Override
+	public ClienteRetornoDTO getDadosByIdCliente(Long id) {
+		ClienteEntity cliente = getByIdCliente(id);
+		ClienteRetornoDTO retorno = new ClienteRetornoDTO();
+		retorno.setNome(cliente.getNome());
+		List<String> listaCompras = vendaRepository.findProdutoNamesByUserId(id);
+		retorno.setVendas(listaCompras);
+		List<String> doencaList = clienteRepository.finddoencasNamesByUserId(id);
+		retorno.setQuadroClinico(doencaList);
+		retorno.setTelefone(cliente.getTelefone());
+		return retorno;
 	}
 
 }

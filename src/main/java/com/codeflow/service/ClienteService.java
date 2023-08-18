@@ -3,6 +3,7 @@ package com.codeflow.service;
 import java.util.List;
 
 import com.codeflow.dto.ClienteDTO;
+import com.codeflow.dto.ClienteRetornoDTO;
 import com.codeflow.entity.ClienteEntity;
 
 /**
@@ -57,5 +58,7 @@ public interface ClienteService {
 	 * @return lista de clientes
 	 */
 	public List<ClienteEntity> getAllClienteiLike(String nome);
+
+	public ClienteRetornoDTO getDadosByIdCliente(Long id);
 
 }
