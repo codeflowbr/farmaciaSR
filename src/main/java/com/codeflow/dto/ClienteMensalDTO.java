@@ -11,13 +11,13 @@ import lombok.Data;
 @Data
 public class ClienteMensalDTO {
 
-	@JsonProperty("mes")
-	private int mes;
+	@JsonProperty("x")
+	private int x;
 	
 	@JsonProperty("ano")
 	private int ano;
 	
-	@JsonProperty("valor")
-	private BigDecimal valor;
+	@JsonProperty("y")
+	private BigDecimal y;
 
 }

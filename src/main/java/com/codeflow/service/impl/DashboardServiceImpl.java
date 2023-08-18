@@ -49,9 +49,8 @@ public class DashboardServiceImpl implements DashboardService {
 			int ano = (int) row[1];
 			Long quantidade = (Long) row[2];
 			MensagemMensalDTO trocaDTO = new MensagemMensalDTO();
-			trocaDTO.setAno(ano);
-			trocaDTO.setMes(mes);
-			trocaDTO.setValor(BigDecimal.valueOf(quantidade));
+			trocaDTO.setX(mes);
+			trocaDTO.setY(BigDecimal.valueOf(quantidade));
 			trocasMensais.add(trocaDTO);
 		}
 		dashboard.setMensagemMensal(trocasMensais);
@@ -65,9 +64,8 @@ public class DashboardServiceImpl implements DashboardService {
 			int ano = (int) row[1];
 			Long quantidade = (Long) row[2];
 			ClienteMensalDTO trocaDTO = new ClienteMensalDTO();
-			trocaDTO.setAno(ano);
-			trocaDTO.setMes(mes);
-			trocaDTO.setValor(BigDecimal.valueOf(quantidade));
+			trocaDTO.setX(mes);
+			trocaDTO.setY(BigDecimal.valueOf(quantidade));
 			clientesMensais.add(trocaDTO);
 		}
 		
