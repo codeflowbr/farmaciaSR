@@ -34,6 +34,12 @@ public class DashboardServiceImpl implements DashboardService {
 	
 	@Override
 	public DashboardDTO getData() {
+		
+		  String[] meses = {
+		            "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
+		            "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
+		        };
+		
 		DashboardDTO dashboard = new DashboardDTO();
 		dashboard.setTotalMsg(vendaRepository.countByMensagemEnviadaTrue());
 		dashboard.setTotalCli(clienteRepository.count());
@@ -49,7 +55,7 @@ public class DashboardServiceImpl implements DashboardService {
 			int ano = (int) row[1];
 			Long quantidade = (Long) row[2];
 			MensagemMensalDTO trocaDTO = new MensagemMensalDTO();
-			trocaDTO.setX(mes);
+			trocaDTO.setX(meses[mes-1]);
 			trocaDTO.setY(BigDecimal.valueOf(quantidade));
 			trocasMensais.add(trocaDTO);
 		}
@@ -64,7 +70,7 @@ public class DashboardServiceImpl implements DashboardService {
 			int ano = (int) row[1];
 			Long quantidade = (Long) row[2];
 			ClienteMensalDTO trocaDTO = new ClienteMensalDTO();
-			trocaDTO.setX(mes);
+			trocaDTO.setX(meses[mes-1]);
 			trocaDTO.setY(BigDecimal.valueOf(quantidade));
 			clientesMensais.add(trocaDTO);
 		}

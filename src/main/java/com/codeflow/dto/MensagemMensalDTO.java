@@ -12,7 +12,7 @@ import lombok.Data;
 public class MensagemMensalDTO {
 
 	@JsonProperty("x")
-	private int x;
+	private String x;
 	
 	@JsonProperty("y")
 	private BigDecimal y;

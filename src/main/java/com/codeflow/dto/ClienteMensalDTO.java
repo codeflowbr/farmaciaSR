@@ -12,7 +12,7 @@ import lombok.Data;
 public class ClienteMensalDTO {
 
 	@JsonProperty("x")
-	private int x;
+	private String x;
 	
 	@JsonProperty("ano")
 	private int ano;
