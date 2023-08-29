@@ -52,7 +52,17 @@ public class ProdutoServiceImpl implements ProdutoService {
 	@Override
 	public ProdutoEntity putProduto(ProdutoDTO produtoDTO) {
 		getByIdProduto(produtoDTO.getId());
-		ProdutoEntity produtoEntity = produtoRepository.save(ProdutoUtils.convertDTOemEntity(produtoDTO));
+		ProdutoEntity produtoEntity = new ProdutoEntity();
+		for (Long doencaEntity : produtoDTO.getDoencas()) {
+			DoencaEntity doenca = doencaRepository.findById(doencaEntity).orElse(null);
+			  if (doenca != null) {
+				  produtoEntity.getDoencas().add(doenca);
+              }
+		}
+		produtoEntity.setValor(produtoDTO.getValor());
+		produtoEntity.setNome(produtoDTO.getNome());
+		produtoEntity.setDesconto(produtoDTO.getDesconto());
+		produtoRepository.save(produtoEntity);
 		return produtoEntity;
 	}
 
