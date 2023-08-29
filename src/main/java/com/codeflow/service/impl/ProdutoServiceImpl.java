@@ -59,6 +59,7 @@ public class ProdutoServiceImpl implements ProdutoService {
 				  produtoEntity.getDoencas().add(doenca);
               }
 		}
+		produtoEntity.setId(produtoDTO.getId());
 		produtoEntity.setValor(produtoDTO.getValor());
 		produtoEntity.setNome(produtoDTO.getNome());
 		produtoEntity.setDesconto(produtoDTO.getDesconto());
