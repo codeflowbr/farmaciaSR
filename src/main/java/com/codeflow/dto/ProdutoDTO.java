@@ -22,6 +22,9 @@ public class ProdutoDTO {
 
 	@JsonProperty("desconto")
 	private Integer desconto;
+	
+	@JsonProperty("valor")
+	private Float valor;
 
 	@Nullable
 	@JsonProperty("doencas")

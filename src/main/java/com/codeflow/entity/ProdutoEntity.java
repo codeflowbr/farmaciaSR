@@ -35,6 +35,9 @@ public class ProdutoEntity {
 	@Column(name = "nome")
 	private String nome;
 
+	@Column(name = "valor")
+	private Float valor;
+	
 	@Column(name = "desconto")
 	private Integer desconto;
 
