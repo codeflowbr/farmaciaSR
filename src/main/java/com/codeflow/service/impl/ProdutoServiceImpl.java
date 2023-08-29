@@ -42,9 +42,10 @@ public class ProdutoServiceImpl implements ProdutoService {
 				  produtoEntity.getDoencas().add(doenca);
               }
 		}
+		produtoEntity.setValor(produtoDTO.getValor());
 		produtoEntity.setNome(produtoDTO.getNome());
 		produtoEntity.setDesconto(produtoDTO.getDesconto());
-		produtoRepository.saveAndFlush(produtoEntity);
+		produtoRepository.save(produtoEntity);
 		return produtoEntity;
 	}
 
