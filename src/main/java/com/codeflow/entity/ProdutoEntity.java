@@ -39,7 +39,7 @@ public class ProdutoEntity {
 	private Float valor;
 	
 	@Column(name = "desconto")
-	private Integer desconto;
+	private Float desconto;
 
 	@ManyToMany
 	@JoinTable(name = "doenca_produto", joinColumns = @JoinColumn(name = "doenca_id"), inverseJoinColumns = @JoinColumn(name = "produto_id"))

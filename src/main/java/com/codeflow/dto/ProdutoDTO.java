@@ -21,7 +21,7 @@ public class ProdutoDTO {
 	private String nome;
 
 	@JsonProperty("desconto")
-	private Integer desconto;
+	private Float desconto;
 	
 	@JsonProperty("valor")
 	private Float valor;
