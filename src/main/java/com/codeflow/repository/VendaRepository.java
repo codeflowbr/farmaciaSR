@@ -17,7 +17,7 @@ public interface VendaRepository extends JpaRepository<VendaEntity, Long> {
 
 	List<VendaEntity> findAllByMensagemEnviada(boolean b);
 	
-	List<VendaEntity> findByDataMensagemLessThanEqualAndMensagemEnviadaIsFalse(Date currentDate);
+	List<VendaEntity> findAllByDataMensagemLessThanEqualAndMensagemEnviadaIsFalse(Date currentDate);
 
 	
 	long countByMensagemEnviadaTrue();
