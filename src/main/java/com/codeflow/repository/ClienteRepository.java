@@ -22,4 +22,7 @@ public interface ClienteRepository extends JpaRepository<ClienteEntity, Long> {
 
 	@Query("SELECT DISTINCT p.doenca FROM cliente c JOIN c.doencas p WHERE c.id = :userId")
 	List<String> finddoencasNamesByUserId(@Param("userId") Long userId);
+
+
+	List<ClienteEntity> findAllByOrderByNome();
 }

@@ -37,7 +37,7 @@ public class ClienteServiceImpl implements ClienteService {
 
 	@Override
 	public List<ClienteEntity> getAllCliente() {
-		List<ClienteEntity> listClienteEntity = clienteRepository.findAll();
+		List<ClienteEntity> listClienteEntity = clienteRepository.findAllByOrderByNome();
 		return listClienteEntity;
 	}
 
