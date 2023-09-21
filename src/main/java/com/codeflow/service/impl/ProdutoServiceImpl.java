@@ -29,7 +29,7 @@ public class ProdutoServiceImpl implements ProdutoService {
 
 	@Override
 	public List<ProdutoEntity> getAllProduto() {
-		List<ProdutoEntity> listProdutoEntity = produtoRepository.findAll();
+		List<ProdutoEntity> listProdutoEntity = produtoRepository.findAllByOrderByNome();
 		return listProdutoEntity;
 	}
 
