@@ -12,7 +12,8 @@ public interface MessageService {
 	 * Envia mensagem
 	 * @param message mensage
 	 * @param number numero
+	 * @return 
 	 */
-	public void postMessage(String message, String number);
+	public String postMessage(String message, String number);
 
 }

@@ -20,6 +20,8 @@ import com.codeflow.dto.WhatsappDTO;
 import com.codeflow.service.ClienteService;
 import com.codeflow.service.MessageService;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 @Service
 public class MessageServiceImpl implements MessageService {
@@ -39,7 +41,7 @@ public class MessageServiceImpl implements MessageService {
 	 
 	 
 	@Override
-	public void postMessage(String message, String number) {	
+	public String postMessage(String message, String number) {	
 		try {
 		
 		double randomId = Math.random();
@@ -62,10 +64,17 @@ public class MessageServiceImpl implements MessageService {
 
         System.out.println("Response Code: " + response.statusCode());
         System.out.println("Response: " + response.body());
+        
+        JsonParser parser = new JsonParser();
+        JsonObject jsonObject = parser.parse(response.body()).getAsJsonObject();
+
+        // Obtém o valor da chave "result"
+        String result = jsonObject.get("result").getAsString();
+        return result;
         }catch (Exception e) {
         	System.out.println(e);
+        	return "fail";
 		}
-		
     }
 	
 

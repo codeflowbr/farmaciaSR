@@ -40,14 +40,15 @@ public class VencimentoServiceImpl implements VencimentoService {
 				mensagem = "Olá "+nomeCliente+", tudo bem? Somos da Farmácia São Rafael e notamos que o seu medicamento, "+venda.getProdutos().get(0).getNome()+", está terminando e tomamos a liberdade de separá-lo para você. Assim, poderá estar retirando em nossa loja ou se preferir, entregamos onde você estiver. O valor do produto, com o seu desconto, fica por "+formatoMoeda.format(venda.getProdutos().get(0).getValor())+". Gostaria de antecipar sua compra para não faltar sua medicação?";
 			}
 			
-			messageService.postMessage(mensagem, venda.getCliente().getTelefone());
-			
+			String retorno = messageService.postMessage(mensagem, venda.getCliente().getTelefone());
+			if(retorno != "fail") {
 			if(venda.getRecorrente()) {
 				 Calendar calendar = Calendar.getInstance();
 				 calendar.add(Calendar.DAY_OF_MONTH, venda.getDuracao() - 3);
 				 venda.setDataMensagem(calendar.getTime());
 			}else{
 				venda.setMensagemEnviada(true);
+			}
 			}
 		}
 		vendaRepository.saveAllAndFlush(listaVendas);
