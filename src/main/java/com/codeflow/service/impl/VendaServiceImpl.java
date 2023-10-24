@@ -78,6 +78,7 @@ public class VendaServiceImpl implements VendaService {
 		vendaEntity.setVenda(vendaDTO.getVenda());
 		vendaEntity.setId(vendaDTO.getId());
 		vendaEntity.setProdutos(new ArrayList<>());
+		vendaEntity.setRecorrente(vendaDTO.getRevenda());
 		 Calendar calendar = Calendar.getInstance();
 		 calendar.add(Calendar.DAY_OF_MONTH, vendaEntity.getDuracao() - 5);
 		vendaEntity.setDataMensagem(calendar.getTime());
