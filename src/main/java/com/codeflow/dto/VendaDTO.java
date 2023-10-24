@@ -32,5 +32,8 @@ public class VendaDTO {
 	
 	@JsonProperty("cliente")
     private Long cliente;
+	
+	@JsonProperty("isRevenda")
+	private Boolean revenda;
 
 }

@@ -106,4 +106,10 @@ public class VendaServiceImpl implements VendaService {
 		throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Venda não encontrado");
 	}
 
+	@Override
+	public List<VendaEntity> getAllRevendas() {
+		List<VendaEntity> listVendaEntity = vendaRepository.findAllByRevenda(true);
+		return listVendaEntity;
+	}
+
 }

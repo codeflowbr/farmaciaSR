@@ -5,6 +5,9 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import jakarta.persistence.*;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -33,6 +36,10 @@ public class VendaEntity {
 	
 	@Column(name = "mensagemEnviada", columnDefinition = "boolean default false")
 	private Boolean mensagemEnviada= false;
+
+
+	@Column(name = "isRevenda", columnDefinition = "boolean default false")
+	private Boolean revenda = false;
 	
 	@Column(name = "recorrente")
 	private Boolean recorrente;
