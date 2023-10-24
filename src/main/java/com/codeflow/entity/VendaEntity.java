@@ -38,7 +38,7 @@ public class VendaEntity {
 	private Boolean mensagemEnviada= false;
 
 
-	@Column(name = "isRevenda")
+	@Column(name = "revenda")
 	private Boolean revenda;
 	
 	@Column(name = "recorrente")
