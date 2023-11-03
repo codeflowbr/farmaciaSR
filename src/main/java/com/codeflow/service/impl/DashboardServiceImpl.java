@@ -88,6 +88,8 @@ public class DashboardServiceImpl implements DashboardService {
 		
 		dashboard.setTotalValor(valorTotal);
 		
+		dashboard.setProdutoMaisVendido(vendaRepository.encontrarNomeProdutoMaisVendido());
+		
 		return dashboard;
 	}
 

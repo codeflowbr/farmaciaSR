@@ -42,5 +42,13 @@ public interface VendaRepository extends JpaRepository<VendaEntity, Long> {
 	@Query("SELECT SUM(p.valor) FROM venda v JOIN v.produtos p")
     Double calcularValorTotalDeTodasAsVendas();
 
+	@Query("SELECT p.nome " +
+	           "FROM venda v " +
+	           "JOIN v.produtos p " +
+	           "GROUP BY p.id " +
+	           "ORDER BY COUNT(v) DESC")
+	String encontrarNomeProdutoMaisVendido();
+
+
 
 }
