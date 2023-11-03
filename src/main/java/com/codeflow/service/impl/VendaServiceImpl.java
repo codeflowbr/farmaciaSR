@@ -51,6 +51,7 @@ public class VendaServiceImpl implements VendaService {
 		vendaEntity.setMensagemEnviada(false);
 		vendaEntity.setVenda(vendaDTO.getVenda());
 		vendaEntity.setRevenda(vendaDTO.getRevenda());
+		vendaEntity.setRevendido(false);
 		
 		 Calendar calendar = Calendar.getInstance();
 		 calendar.add(Calendar.DAY_OF_MONTH, vendaEntity.getDuracao() - 5);
@@ -79,6 +80,7 @@ public class VendaServiceImpl implements VendaService {
 		vendaEntity.setId(vendaDTO.getId());
 		vendaEntity.setProdutos(new ArrayList<>());
 		vendaEntity.setRecorrente(vendaDTO.getRevenda());
+		vendaEntity.setRevendido(vendaDTO.getRevendido());
 		 Calendar calendar = Calendar.getInstance();
 		 calendar.add(Calendar.DAY_OF_MONTH, vendaEntity.getDuracao() - 5);
 		vendaEntity.setDataMensagem(calendar.getTime());

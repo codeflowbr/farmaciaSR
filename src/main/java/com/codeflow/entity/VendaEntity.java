@@ -41,6 +41,9 @@ public class VendaEntity {
 	@Column(name = "revenda")
 	private Boolean revenda;
 	
+	@Column(name = "revendido")
+	private Boolean revendido;
+	
 	@Column(name = "recorrente")
 	private Boolean recorrente;
 
