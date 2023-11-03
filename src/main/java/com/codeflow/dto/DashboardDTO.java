@@ -32,7 +32,7 @@ public class DashboardDTO {
 	private Long totalRevenda;
 	
 	@JsonProperty( "produtoMaisVendido")
-	private Long produtoMaisVendido;
+	private String produtoMaisVendido;
 	
 	@JsonProperty("clienteMensal")
 	private List<ClienteMensalDTO> clienteMensal;
