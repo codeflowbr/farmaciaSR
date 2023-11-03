@@ -75,7 +75,7 @@ public class VendaServiceImpl implements VendaService {
 		vendaEntity.setCliente(clienteRepository.findById(vendaDTO.getCliente()).orElse(null));
 		vendaEntity.setDuracao(vendaDTO.getDuracao());
 		vendaEntity.setRecorrente(vendaDTO.getRecorrente());
-		vendaEntity.setMensagemEnviada(false);
+		vendaEntity.setMensagemEnviada(vendaDTO.getMensagemEnviada());
 		vendaEntity.setVenda(vendaDTO.getVenda());
 		vendaEntity.setId(vendaDTO.getId());
 		vendaEntity.setProdutos(new ArrayList<>());

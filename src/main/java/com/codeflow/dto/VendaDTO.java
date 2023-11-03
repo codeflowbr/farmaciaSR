@@ -39,5 +39,9 @@ public class VendaDTO {
 
 	@JsonProperty("revendido")
 	private Boolean revendido;
+	
+
+	@JsonProperty("mensagemEnviada")
+	private Boolean mensagemEnviada;
 
 }
