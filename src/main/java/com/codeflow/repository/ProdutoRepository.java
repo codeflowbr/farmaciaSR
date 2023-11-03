@@ -15,6 +15,4 @@ public interface ProdutoRepository extends JpaRepository<ProdutoEntity, Long> {
 
 	List<ProdutoEntity> findAllByOrderByNome();
 
-
-
 }
