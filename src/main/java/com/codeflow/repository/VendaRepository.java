@@ -21,6 +21,8 @@ public interface VendaRepository extends JpaRepository<VendaEntity, Long> {
 	
 	List<VendaEntity> findAllByDataMensagemLessThanEqualAndMensagemEnviadaIsFalse(Date currentDate);
 
+	 @Query("SELECT SUM(p.valor) FROM VendaEntity v JOIN v.produtos p WHERE v.id = :vendaId")
+	 Double calcularValorTotalDaVenda(@Param("vendaId") Long vendaId);
 	
 	long countByMensagemEnviadaTrue();
 
@@ -34,6 +36,11 @@ public interface VendaRepository extends JpaRepository<VendaEntity, Long> {
 
 	  @Query("SELECT DISTINCT p.nome FROM venda v JOIN v.produtos p WHERE v.cliente.id = :userId")
 	  List<String> findProdutoNamesByUserId(@Param("userId") Long userId);
+
+	Long countByRevendaTrue();
+
+	@Query("SELECT SUM(p.valor) FROM VendaEntity v JOIN v.produtos p")
+    Double calcularValorTotalDeTodasAsVendas();
 
 
 }

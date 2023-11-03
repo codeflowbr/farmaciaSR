@@ -78,6 +78,15 @@ public class DashboardServiceImpl implements DashboardService {
 		dashboard.setClienteMensal(clientesMensais);
 		
 		
+		
+		Long totalRevenda = vendaRepository.countByRevendaTrue();
+		
+		dashboard.setTotalRevenda(totalRevenda);
+		
+		Double valorTotal = vendaRepository.calcularValorTotalDeTodasAsVendas();
+		
+		dashboard.setTotalValor(valorTotal);
+		
 		return dashboard;
 	}
 
