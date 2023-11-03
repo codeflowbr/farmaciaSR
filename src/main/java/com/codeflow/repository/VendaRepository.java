@@ -2,6 +2,7 @@ package com.codeflow.repository;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -46,8 +47,8 @@ public interface VendaRepository extends JpaRepository<VendaEntity, Long> {
 	           "FROM venda v " +
 	           "JOIN v.produtos p " +
 	           "GROUP BY p.id " +
-	           "ORDER BY COUNT(v) DESC")
-	String encontrarNomeProdutoMaisVendido();
+	           "ORDER BY COUNT(v) DESC LIMIT 1")
+	Optional<String> encontrarNomeProdutoMaisVendido();
 
 
 
