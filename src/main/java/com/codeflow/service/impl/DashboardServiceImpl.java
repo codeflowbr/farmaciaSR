@@ -6,6 +6,7 @@ import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -77,6 +78,17 @@ public class DashboardServiceImpl implements DashboardService {
 		
 		dashboard.setClienteMensal(clientesMensais);
 		
+		
+		
+		Long totalRevenda = vendaRepository.countByRevendaTrue();
+		
+		dashboard.setTotalRevenda(totalRevenda);
+		
+		Double valorTotal = vendaRepository.calcularValorTotalDeTodasAsVendas();
+		
+		dashboard.setTotalValor(valorTotal);
+		
+		dashboard.setProdutoMaisVendido(vendaRepository.encontrarNomeProdutoMaisVendido().get());
 		
 		return dashboard;
 	}

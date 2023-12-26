@@ -50,4 +50,11 @@ public interface VendaService {
 	 */
 	public VendaEntity getByIdVenda(Long id);
 
+
+	/**
+	 * Buscar todas as revendas.
+	 * @return lista de venda dto.
+	 */
+	public List<VendaEntity> getAllRevendas();
+
 }

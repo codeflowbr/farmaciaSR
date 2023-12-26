@@ -24,6 +24,15 @@ public class DashboardDTO {
 	
 	@JsonProperty( "totalProd")
 	private Long totalProd;
+
+	@JsonProperty( "totalValor")
+	private Double totalValor;
+
+	@JsonProperty( "totalRevenda")
+	private Long totalRevenda;
+	
+	@JsonProperty( "produtoMaisVendido")
+	private String produtoMaisVendido;
 	
 	@JsonProperty("clienteMensal")
 	private List<ClienteMensalDTO> clienteMensal;

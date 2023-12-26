@@ -50,6 +50,8 @@ public class VendaServiceImpl implements VendaService {
 		vendaEntity.setRecorrente(vendaDTO.getRecorrente());
 		vendaEntity.setMensagemEnviada(false);
 		vendaEntity.setVenda(vendaDTO.getVenda());
+		vendaEntity.setRevenda(vendaDTO.getRevenda());
+		vendaEntity.setRevendido(false);
 		
 		 Calendar calendar = Calendar.getInstance();
 		 calendar.add(Calendar.DAY_OF_MONTH, vendaEntity.getDuracao() - 5);
@@ -73,10 +75,12 @@ public class VendaServiceImpl implements VendaService {
 		vendaEntity.setCliente(clienteRepository.findById(vendaDTO.getCliente()).orElse(null));
 		vendaEntity.setDuracao(vendaDTO.getDuracao());
 		vendaEntity.setRecorrente(vendaDTO.getRecorrente());
-		vendaEntity.setMensagemEnviada(false);
+		vendaEntity.setMensagemEnviada(vendaDTO.getMensagemEnviada());
 		vendaEntity.setVenda(vendaDTO.getVenda());
 		vendaEntity.setId(vendaDTO.getId());
 		vendaEntity.setProdutos(new ArrayList<>());
+		vendaEntity.setRecorrente(vendaDTO.getRevenda());
+		vendaEntity.setRevendido(vendaDTO.getRevendido());
 		 Calendar calendar = Calendar.getInstance();
 		 calendar.add(Calendar.DAY_OF_MONTH, vendaEntity.getDuracao() - 5);
 		vendaEntity.setDataMensagem(calendar.getTime());
@@ -104,6 +108,12 @@ public class VendaServiceImpl implements VendaService {
 			return vendaEntity.get();
 		}
 		throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Venda não encontrado");
+	}
+
+	@Override
+	public List<VendaEntity> getAllRevendas() {
+		List<VendaEntity> listVendaEntity = vendaRepository.findAllByRevenda(true);
+		return listVendaEntity;
 	}
 
 }

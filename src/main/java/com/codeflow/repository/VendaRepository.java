@@ -2,6 +2,7 @@ package com.codeflow.repository;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -17,8 +18,12 @@ public interface VendaRepository extends JpaRepository<VendaEntity, Long> {
 
 	List<VendaEntity> findAllByMensagemEnviada(boolean b);
 	
+	List<VendaEntity> findAllByRevenda(boolean b);
+	
 	List<VendaEntity> findAllByDataMensagemLessThanEqualAndMensagemEnviadaIsFalse(Date currentDate);
 
+	 @Query("SELECT SUM(p.valor) FROM venda v JOIN v.produtos p WHERE v.id = :vendaId")
+	 Double calcularValorTotalDaVenda(@Param("vendaId") Long vendaId);
 	
 	long countByMensagemEnviadaTrue();
 
@@ -32,6 +37,19 @@ public interface VendaRepository extends JpaRepository<VendaEntity, Long> {
 
 	  @Query("SELECT DISTINCT p.nome FROM venda v JOIN v.produtos p WHERE v.cliente.id = :userId")
 	  List<String> findProdutoNamesByUserId(@Param("userId") Long userId);
+
+	Long countByRevendaTrue();
+
+	@Query("SELECT SUM(p.valor) FROM venda v JOIN v.produtos p")
+    Double calcularValorTotalDeTodasAsVendas();
+
+	@Query("SELECT p.nome " +
+	           "FROM venda v " +
+	           "JOIN v.produtos p " +
+	           "GROUP BY p.id " +
+	           "ORDER BY COUNT(v) DESC LIMIT 1")
+	Optional<String> encontrarNomeProdutoMaisVendido();
+
 
 
 }

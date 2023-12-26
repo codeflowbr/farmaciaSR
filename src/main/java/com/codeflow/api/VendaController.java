@@ -28,6 +28,11 @@ public class VendaController {
 	public ResponseEntity<?> getAllVendas() {
 		return ResponseEntity.ok(vendaService.getAllVenda());
 	}
+	
+	@GetMapping("/revenda")
+	public ResponseEntity<?> getAllRevendas() {
+		return ResponseEntity.ok(vendaService.getAllRevendas());
+	}
 
 	@GetMapping("/{idVenda}")
 	public ResponseEntity<?> getByIdVenda(@PathVariable("idVenda") Long id) {
