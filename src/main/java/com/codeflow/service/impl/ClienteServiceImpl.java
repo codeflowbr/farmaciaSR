@@ -1,6 +1,5 @@
 package com.codeflow.service.impl;
 
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -15,23 +14,20 @@ import com.codeflow.dto.ClienteDTO;
 import com.codeflow.dto.ClienteRetornoDTO;
 import com.codeflow.entity.ClienteEntity;
 import com.codeflow.entity.DoencaEntity;
-import com.codeflow.entity.ProdutoEntity;
 import com.codeflow.repository.ClienteRepository;
 import com.codeflow.repository.DoencaRepository;
 import com.codeflow.repository.VendaRepository;
 import com.codeflow.service.ClienteService;
-import com.codeflow.utils.ClienteUtils;
 
 @Service
 public class ClienteServiceImpl implements ClienteService {
-	
 
 	@Autowired
 	private ClienteRepository clienteRepository;
-	
+
 	@Autowired
 	private DoencaRepository doencaRepository;
-	
+
 	@Autowired
 	private VendaRepository vendaRepository;
 
@@ -49,15 +45,15 @@ public class ClienteServiceImpl implements ClienteService {
 		clienteEntity.setEndereco(clienteDTO.getEndereco());
 		clienteEntity.setGenero(clienteDTO.getGenero());
 		clienteEntity.setNome(clienteDTO.getNome());
-		clienteEntity.setTelefone(clienteDTO.getTelefone());
+		clienteEntity.setTelefone("55" + clienteDTO.getTelefone());
 		clienteEntity.setDoencas(new ArrayList());
 		for (Long doencaEntity : clienteDTO.getDoencas()) {
 			DoencaEntity doenca = doencaRepository.findById(doencaEntity).orElse(null);
-			  if (doenca != null) {
-				  clienteEntity.getDoencas().add(doenca);
-              }
+			if (doenca != null) {
+				clienteEntity.getDoencas().add(doenca);
+			}
 		}
-		
+
 		return clienteRepository.saveAndFlush(clienteEntity);
 	}
 
@@ -72,9 +68,9 @@ public class ClienteServiceImpl implements ClienteService {
 		clienteEntity.setDoencas(new ArrayList());
 		for (Long doencaEntity : clienteDTO.getDoencas()) {
 			DoencaEntity doenca = doencaRepository.findById(doencaEntity).orElse(null);
-			  if (doenca != null) {
-				  clienteEntity.getDoencas().add(doenca);
-              }
+			if (doenca != null) {
+				clienteEntity.getDoencas().add(doenca);
+			}
 		}
 		ClienteEntity clienteEntityreturn = clienteRepository.save(clienteEntity);
 		return clienteEntityreturn;
